@@ -38,7 +38,7 @@
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="信息素重要程度系数(Alpha):"/>
+          <text value="信息素重要程度系数(α):"/>
         </properties>
       </component>
       <component id="18f9e" class="javax.swing.JLabel" binding="beta">
@@ -46,7 +46,7 @@
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="启发式因子重要程度系数(Beta):"/>
+          <text value="城市间距离重要程度系数(β):"/>
         </properties>
       </component>
       <component id="5902f" class="javax.swing.JLabel" binding="rho">
@@ -54,7 +54,7 @@
           <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="信息素残留系数(Rho):"/>
+          <text value="信息素残留系数(ρ):"/>
         </properties>
       </component>
       <component id="6276e" class="javax.swing.JLabel" binding="Q">

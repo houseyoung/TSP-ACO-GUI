@@ -12,7 +12,7 @@ public class Ant {
     private double[][] eta; // 能见度矩阵
 
     private double alpha; // 信息素重要程度系数
-    private double beta; // 两城市间距离重要程度系数
+    private double beta; // 城市间距离重要程度系数
 
     private int tourLength; // 路径长度
     private int cityNum; // 城市数量

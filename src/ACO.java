@@ -18,7 +18,7 @@ public class ACO {
     private int antNum; // 蚂蚁数量
     private int generation; // 迭代次数
     private double alpha; // 信息素重要程度系数
-    private double beta; // 两城市间距离重要程度系数
+    private double beta; // 城市间距离重要程度系数
     private double rho; // 信息素残留系数
     private int Q; // 蚂蚁循环一周在经过的路径上所释放的信息素总量
     private int deltaType; // 信息素更新方式模型，0: Ant-quantity; 1: Ant-density; 2: Ant-cycle
