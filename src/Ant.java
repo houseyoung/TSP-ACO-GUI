@@ -54,7 +54,7 @@ public class Ant {
         }
 
         // 随机挑选一个城市作为蚂蚁的起始城市
-        Random random = new Random(System.currentTimeMillis());
+        Random random = new Random();
         firstCity = random.nextInt(cityNum);
 
         // 从未访问过的城市集合中移除起始城市
@@ -92,9 +92,8 @@ public class Ant {
         double sum = 0;
 
         // 计算分母
-        for (Integer i : allowedCities) {
-            sum += Math.pow(pheromone[currentCity][i.intValue()], alpha)
-                    * Math.pow(1.0 / distance[currentCity][i.intValue()], beta);
+        for (int i : allowedCities) {
+            sum += Math.pow(pheromone[currentCity][i], alpha) * Math.pow(eta[currentCity][i], beta);
         }
 
         // 计算概率矩阵
@@ -109,7 +108,7 @@ public class Ant {
         // 选择下一个城市(权重随机数算法/轮盘赌)
         int selectCity = 0;
 
-        Random random = new Random(System.currentTimeMillis());
+        Random random = new Random();
         double rand = random.nextDouble();
         double sumPs = 0.0;
         for (int i = 0; i < cityNum; i++) {
