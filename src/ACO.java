@@ -27,16 +27,16 @@ public class ACO {
      * 构造方法
      * @param cityNum
      * @param antNum
-     * @param MAX_GEN
+     * @param generation
      * @param alpha
      * @param beta
      * @param rho
      * @param Q
      */
-    public ACO(int cityNum, int antNum, int MAX_GEN, double alpha, double beta, double rho, int Q, int deltaType) {
+    public ACO(int cityNum, int antNum, int generation, double alpha, double beta, double rho, int Q, int deltaType) {
         this.cityNum = cityNum;
         this.antNum = antNum;
-        this.generation = MAX_GEN;
+        this.generation = generation;
         this.alpha = alpha;
         this.beta = beta;
         this.rho = rho;

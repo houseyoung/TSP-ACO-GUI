@@ -66,7 +66,7 @@ public class Ant {
         }
 
         // 已访问过的城市集合中添加起始城市
-        tabu.add(Integer.valueOf(firstCity));
+        tabu.add(firstCity);
 
         // 将当前城市设为起始城市
         currentCity = firstCity;
