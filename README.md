@@ -5,4 +5,4 @@
 
 TSP数据提供了ATT48（美国本土48州首府）、CHN31（中国大陆31省省会）、CHN144（中国144个主要城市）三种。读者可自行根据格式更换不同的测试数据。
 
-**注：GUI部分使用IntelliJ IDEA自带的GUI Form创建，有网友测试发现在Eclipse中无法正确执行。**
+**注：GUI部分使用IntelliJ IDEA自带的GUI Form创建，依赖IDEA提供的jar包，因而不使用IDEA无法正确运行。**
