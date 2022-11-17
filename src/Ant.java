@@ -1,6 +1,7 @@
 /**
  * Created by houseyoung on 16/5/11 19:47.
  */
+
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -18,9 +19,11 @@ public class Ant {
     private int cityNum; // 城市数量
     private int firstCity; // 起始城市
     private int currentCity; // 当前城市
+    private ACO aco;    //算法对象
 
     /**
      * 构造方法
+     *
      * @param cityNum
      */
     public Ant(int cityNum) {
@@ -28,8 +31,15 @@ public class Ant {
         tourLength = 0;
     }
 
+    public Ant(int cityNum, ACO aco) {
+        this.cityNum = cityNum;
+        tourLength = 0;
+        this.aco = aco;
+    }
+
     /**
      * 初始化蚂蚁，随机挑选一个城市作为起始位置
+     *
      * @param distance
      * @param alpha
      * @param beta
@@ -85,6 +95,7 @@ public class Ant {
 
     /**
      * 选择下一个城市
+     *
      * @param pheromone
      */
     public void selectNextCity(double[][] pheromone) {
@@ -130,12 +141,26 @@ public class Ant {
         // 在禁忌表中添加选中的下一个城市
         tabu.add(selectCity);
 
+
+        if (aco.deltaType == 0) {
+            // Ant-quantity System模型
+            delta[currentCity][selectCity] = aco.Q;
+            pheromone[currentCity][selectCity] = pheromone[currentCity][selectCity] * aco.rho;
+            pheromone[currentCity][selectCity] += delta[currentCity][selectCity];
+        } else if (aco.deltaType == 1) {
+            // Ant-density System模型
+            delta[currentCity][selectCity] = aco.Q / distance[currentCity][selectCity];
+            pheromone[currentCity][selectCity] = pheromone[currentCity][selectCity] * aco.rho;
+            pheromone[currentCity][selectCity] += delta[currentCity][selectCity];
+        }
+
         // 将当前城市改为选中的下一个城市
         currentCity = selectCity;
     }
 
     /**
-     * 计算路径长度
+     * 计算路径长度l
+     *
      * @return
      */
     private int calculateTourLength() {

@@ -19,7 +19,7 @@ public class Test {
 
         for (int i = 0; i < 10; i++) {
             // 城市数量, 蚂蚁数量, 迭代次数, Alpha, Beta, Rho, Q, QType
-            ACO aco = new ACO(48, 10, 100, 1.0, 10.0, 0.5, 10, 0);
+            ACO aco = new ACO(48, 10, 100, 1.0, 10.0, 0.5, 10, 1);
             aco.init(tspData);
             aco.solve();
             avg += aco.getBestLength();
