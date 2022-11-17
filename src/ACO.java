@@ -1,6 +1,7 @@
 /**
  * Created by houseyoung on 16/5/11 19:47.
  */
+
 import java.io.IOException;
 
 public class ACO {
@@ -19,12 +20,13 @@ public class ACO {
     private int generation; // 迭代次数
     private double alpha; // 信息素重要程度系数
     private double beta; // 城市间距离重要程度系数
-    private double rho; // 信息素残留系数
-    private int Q; // 蚂蚁循环一周在经过的路径上所释放的信息素总量
-    private int deltaType; // 信息素更新方式模型，0: Ant-quantity; 1: Ant-density; 2: Ant-cycle
+    public final double rho; // 信息素残留系数
+    public final int Q; // 蚂蚁循环一周在经过的路径上所释放的信息素总量
+    public final int deltaType; // 信息素更新方式模型，0: Ant-quantity; 1: Ant-density; 2: Ant-cycle
 
     /**
      * 构造方法
+     *
      * @param cityNum
      * @param antNum
      * @param generation
@@ -48,6 +50,7 @@ public class ACO {
 
     /**
      * 初始化
+     *
      * @param filename
      * @throws IOException
      */
@@ -74,18 +77,19 @@ public class ACO {
 
         // 初始化antNum个蚂蚁
         for (int i = 0; i < antNum; i++) {
-            ants[i] = new Ant(cityNum);
+            ants[i] = new Ant(cityNum, this);
             ants[i].init(distance, alpha, beta);
         }
     }
 
     /**
      * 计算距离矩阵
+     *
      * @param x
      * @param y
      * @throws IOException
      */
-    private void getDistance (int[] x, int[] y) throws IOException {
+    private void getDistance(int[] x, int[] y) throws IOException {
         // 计算距离矩阵
         distance = new double[cityNum][cityNum];
         for (int i = 0; i < cityNum - 1; i++) {
@@ -122,26 +126,20 @@ public class ACO {
                     }
                 }
 
-                // 更新这只蚂蚁信息素增量矩阵
-                double[][] delta = ants[ant].getDelta();
-                for (int i = 0; i < cityNum; i++) {
-                    for (int j : ants[ant].getTabu()) {
-                        if (deltaType == 0) {
-                            delta[i][j] = Q; // Ant-quantity System
-                        }
-                        if (deltaType == 1) {
-                            delta[i][j] = Q / distance[i][j]; // Ant-density System
-                        }
-                        if (deltaType == 2) {
-                            delta[i][j] = Q / ants[ant].getTourLength(); // Ant-cycle System
+                // 更新这只蚂蚁信息素增量矩阵,Ant-cycle System
+                if (deltaType == 2) {
+                    double[][] delta = ants[ant].getDelta();
+                    for (int i = 0; i < cityNum; i++) {
+                        for (int j : ants[ant].getTabu()) {
+                            delta[i][j] = 1.0 * Q / ants[ant].getTourLength();
                         }
                     }
-                }
-                ants[ant].setDelta(delta);
-            }
+                    ants[ant].setDelta(delta);
 
-            // 更新信息素
-            updatePheromone();
+                    // 更新信息素
+                    updatePheromone();
+                }
+            }
 
             // 重新初始化蚂蚁
             for (int i = 0; i < antNum; i++) {
@@ -188,6 +186,7 @@ public class ACO {
 
     /**
      * 输出最佳路径
+     *
      * @return
      */
     public int[] getBestTour() {
@@ -196,6 +195,7 @@ public class ACO {
 
     /**
      * 输出最佳长度
+     *
      * @return
      */
     public int getBestLength() {
@@ -204,6 +204,7 @@ public class ACO {
 
     /**
      * 输出X坐标矩阵
+     *
      * @return
      */
     public int[] getX() {
@@ -212,6 +213,7 @@ public class ACO {
 
     /**
      * 输出Y坐标矩阵
+     *
      * @return
      */
     public int[] getY() {
